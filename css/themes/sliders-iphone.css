@@ -1,0 +1,12 @@
+.slider-iphone .slider-knob {
+  background: white;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.slider-iphone .slider-inner {
+  background: #0f1c00;
+  border-radius: 3px;
+}
+.slider-iphone .slider-activeTrack {
+  background: white;
+}

@@ -86,6 +86,18 @@
   background: -webkit-linear-gradient(top, #1a70be 0%, #31a2e1 100%);
   background: linear-gradient(top, #1a70be 0%, #31a2e1 100%);
 }
+.slider-iphone .slider-knob {
+  background: white;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.slider-iphone .slider-inner {
+  background: #0f1c00;
+  border-radius: 3px;
+}
+.slider-iphone .slider-activeTrack {
+  background: white;
+}
 .slider-modern .slider-knob {
   background: #FFFFFF;
   -webkit-box-shadow: 0 2px 4px rgba(97, 126, 147, 0.56);

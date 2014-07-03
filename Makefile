@@ -53,6 +53,7 @@ css: \
 	css/sliders.css \
 	css/themes/sliders-light.css \
 	css/themes/sliders-dark.css \
+	css/themes/sliders-iphone.css \
 	css/themes/sliders-modern.css \
 	css/themes/sliders-all.css \
 	css/sliders-full.css \
@@ -63,13 +64,16 @@ css/sliders.css: less/sliders.less
 css/sliders-full.css: css/sliders.css css/themes/sliders-all.css
 	cat $^ > $@
 
-css/themes/sliders-all.css: css/themes/sliders-light.css css/themes/sliders-dark.css css/themes/sliders-modern.css css/themes/sliders-soft.css
+css/themes/sliders-all.css: css/themes/sliders-light.css css/themes/sliders-dark.css css/themes/sliders-iphone.css css/themes/sliders-modern.css css/themes/sliders-soft.css
 	cat $^ > $@
 
 css/themes/sliders-light.css: less/themes/sliders-light.less
 	$(call css)
 
 css/themes/sliders-dark.css: less/themes/sliders-dark.less
+	$(call css)
+
+css/themes/sliders-iphone.css: less/themes/sliders-iphone.less
 	$(call css)
 
 css/themes/sliders-modern.css: less/themes/sliders-modern.less
