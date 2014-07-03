@@ -1,0 +1,37 @@
+.slider-knob {
+  border-radius: 20px;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  z-index: 2;
+  left: -8px;
+  top: -7px;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+}
+.slider-knob:active {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+.slider-inner {
+  height: 3px;
+  overflow: visible;
+  position: relative;
+}
+.slider-track {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.slider-activeTrack {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  left: -100%;
+}

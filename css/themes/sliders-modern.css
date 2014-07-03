@@ -1,0 +1,15 @@
+.slider-modern .slider-knob {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 2px 4px rgba(97, 126, 147, 0.56);
+          box-shadow: 0 2px 4px rgba(97, 126, 147, 0.56);
+  border: 1px solid #C9D1D6;
+}
+.slider-modern .slider-inner {
+  border-radius: 4px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#8ca0ad), to(#cad6de));
+  background: -webkit-linear-gradient(top, #8ca0ad, #cad6de);
+  background: linear-gradient(top, #8ca0ad, #cad6de);
+}
+.slider-modern .slider-activeTrack {
+  background: #0095FF;
+}

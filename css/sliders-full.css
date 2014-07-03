@@ -1,0 +1,128 @@
+.slider-knob {
+  border-radius: 20px;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  z-index: 2;
+  left: -8px;
+  top: -7px;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+}
+.slider-knob:active {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+.slider-inner {
+  height: 3px;
+  overflow: visible;
+  position: relative;
+}
+.slider-track {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.slider-activeTrack {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  left: -100%;
+}
+.slider-light .slider-knob {
+  background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#cfcfcf));
+  background: -webkit-linear-gradient(#f5f5f5, #cfcfcf);
+  background: linear-gradient(#f5f5f5, #cfcfcf);
+  -webkit-box-shadow: 1px 1px 2px #888;
+          box-shadow: 1px 1px 2px #888;
+}
+.slider-light .slider-knob:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#e4e4e4), to(#f9f9f9));
+  background: -webkit-linear-gradient(#e4e4e4, #f9f9f9);
+  background: linear-gradient(#e4e4e4, #f9f9f9);
+}
+.slider-light .slider-inner {
+  border-radius: 9999px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#cfcfcf), to(#f5f5f5));
+  background: -webkit-linear-gradient(#cfcfcf, #f5f5f5);
+  background: linear-gradient(#cfcfcf, #f5f5f5);
+}
+.slider-light .slider-activeTrack {
+  background: #45a31f;
+  -webkit-box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+.slider-dark .slider-knob {
+  border-radius: 9999px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#cfcfcf), to(#f5f5f5));
+  background: -webkit-linear-gradient(top, #cfcfcf 0%, #f5f5f5 100%);
+  background: linear-gradient(top, #cfcfcf 0%, #f5f5f5 100%);
+  -webkit-box-shadow: inset 0 0 0 1px #888, inset 0 0 0 2px white;
+          box-shadow: inset 0 0 0 1px #888, inset 0 0 0 2px white;
+}
+.slider-dark .slider-knob:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#c0c0c0), to(#dadada));
+  background: -webkit-linear-gradient(top, #c0c0c0 0%, #dadada 100%);
+  background: linear-gradient(top, #c0c0c0 0%, #dadada 100%);
+  -webkit-box-shadow: inset 0 0 0 1px #888,inset 0 0 0 2px #ddd;
+          box-shadow: inset 0 0 0 1px #888,inset 0 0 0 2px #ddd;
+}
+.slider-dark .slider-inner {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 0 1px #242529, 0 1px 0 1px rgba(255, 255, 255, 0.2);
+          box-shadow: 0 0 0 1px #242529, 0 1px 0 1px rgba(255, 255, 255, 0.2);
+  background: -webkit-gradient(linear, left top, left bottom, from(#242529), to(#34363b));
+  background: -webkit-linear-gradient(top, #242529 0%, #34363b 100%);
+  background: linear-gradient(top, #242529 0%, #34363b 100%);
+}
+.slider-dark .slider-activeTrack {
+  background: -webkit-gradient(linear, left top, left bottom, from(#1a70be), to(#31a2e1));
+  background: -webkit-linear-gradient(top, #1a70be 0%, #31a2e1 100%);
+  background: linear-gradient(top, #1a70be 0%, #31a2e1 100%);
+}
+.slider-modern .slider-knob {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 2px 4px rgba(97, 126, 147, 0.56);
+          box-shadow: 0 2px 4px rgba(97, 126, 147, 0.56);
+  border: 1px solid #C9D1D6;
+}
+.slider-modern .slider-inner {
+  border-radius: 4px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#8ca0ad), to(#cad6de));
+  background: -webkit-linear-gradient(top, #8ca0ad, #cad6de);
+  background: linear-gradient(top, #8ca0ad, #cad6de);
+}
+.slider-modern .slider-activeTrack {
+  background: #0095FF;
+}
+.slider-soft .slider-knob {
+  border-radius: 9999px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#cfcfcf), to(#f5f5f5));
+  background: -webkit-linear-gradient(#cfcfcf, #f5f5f5);
+  background: linear-gradient(#cfcfcf, #f5f5f5);
+  -webkit-box-shadow: inset 0 0 0 1px #bbb, inset 0 0 0 2px white;
+          box-shadow: inset 0 0 0 1px #bbb, inset 0 0 0 2px white;
+}
+.slider-soft .slider-knob:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#e4e4e4), to(#f9f9f9));
+  background: -webkit-linear-gradient(#e4e4e4, #f9f9f9);
+  background: linear-gradient(#e4e4e4, #f9f9f9);
+  -webkit-box-shadow: inset 0 0 0 1px #ddd,inset 0 0 0 2px #ddd;
+          box-shadow: inset 0 0 0 1px #ddd,inset 0 0 0 2px #ddd;
+}
+.slider-soft .slider-inner {
+  background: -webkit-gradient(linear, left top, left bottom, from(#cfcfcf), to(#f5f5f5));
+  background: -webkit-linear-gradient(#cfcfcf, #f5f5f5);
+  background: linear-gradient(#cfcfcf, #f5f5f5);
+}
+.slider-soft .slider-activeTrack {
+  background: -webkit-gradient(linear, left top, left bottom, from(#d2ff52), to(#91e842));
+  background: -webkit-linear-gradient(#d2ff52, #91e842);
+  background: linear-gradient(#d2ff52, #91e842);
+}

@@ -1,0 +1,10 @@
+{
+  "name": "simontabor/jquery-sliders",
+  "version": "0.0.1",
+  "main": "sliders.min.js",
+  "description": "Sliders is a lightweight jQuery plugin that creates easily-styleable range sliders (similar to input[type=range]).",
+  "license": "MIT",
+  "ignore": [
+    "lib/*"
+  ]
+}
