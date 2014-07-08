@@ -1,5 +1,5 @@
 /**
-@license jQuery Sliders v1.0.0
+@license jQuery Sliders v1.1.0
 Copyright 2014 Simon Tabor - MIT License
 https://github.com/simontabor/jquery-sliders / http://simontabor.com/labs/sliders
 */
@@ -12,18 +12,17 @@ var Sliders = root['Sliders'] = function(el, opts) {
   var self = this;
 
   if (typeof opts === 'number' && el.data('sliders')) {
-    el.data('sliders').setState(opts);
+    el.data('sliders').setValue(opts);
     return;
   }
 
-  // extend default opts with the users options
-  opts = self.opts = $.extend({
+  var defaults = {
     // can the slider be dragged
     'drag': true,
     // can it be clicked to slide
     'click': true,
-    // state for the slider on init
-    'state': 0,
+    // value for the slider on init
+    'value': 0,
     // min + max states (inclusive)
     'min': 0,
     'max': 10,
@@ -39,14 +38,43 @@ var Sliders = root['Sliders'] = function(el, opts) {
     'height': 20,
     // the event to fire once we've finished changing (e.g. click or drag released)
     'changeEvent': 'change',
-    // the event to fire whilst we're moving between states (e.g. dragging through multiple bounds)
-    'stateEvent': 'state'
-  }, opts || {});
+    // the event to fire whilst we're moving between values (e.g. dragging through multiple bounds)
+    'valueEvent': 'value',
+    // input element to set the value of and inherit values off
+    'input': false
+  };
+
+  var dataOpts = {};
+  for (var i in defaults) {
+    var opt = el.data('slider-' + i);
+    if (typeof opt !== 'undefined') dataOpts[i] = opt;
+  }
+
+  // extend default opts with the users options
+  self.opts = $.extend(defaults, opts || {}, dataOpts);
+
+  self.input = self.opts['input'] && $(self.opts['input']);
+
+  if (el[0].tagName === 'INPUT') {
+    self.input = el.hide();
+    el = $('<div>');
+    el.insertAfter(self.input);
+  }
+
+  if (self.input) {
+    var inputAttrs = [ 'max', 'min', 'step', 'value' ];
+    var inputOpts = {};
+    for (var i = 0; i < inputAttrs.length; i++) {
+      var opt = self.input.attr(inputAttrs[i]);
+      if (typeof opt !== 'undefined') inputOpts[i] = opt;
+    }
+    self.opts = $.extend(self.opts, inputOpts);
+  }
 
   self.el = el;
 
-  // ensure sliders.state is available
-  self['state'] = opts['state'];
+  // ensure sliders.value is available
+  self['value'] = self.opts['value'];
 
   el.data('sliders', self);
 
@@ -99,11 +127,13 @@ Sliders.prototype.createEl = function() {
 Sliders.prototype.bindEvents = function() {
   var self = this;
 
-  self.el.on('click', function(e) {
-    var off = self.el.offset();
-    self.move((e.pageX - off.left) / self.w * 100);
-    self.bound();
-  });
+  if (self.opts['click']) {
+    self.el.on('click', function(e) {
+      var off = self.el.offset();
+      self.move((e.pageX - off.left) / self.w * 100);
+      self.bound();
+    });
+  }
 
   // bind up dragging stuff
   if (self.opts['drag']) self.bindDrag();
@@ -163,35 +193,43 @@ Sliders.prototype.move = function(across, noAnimate) {
     self.els.activeKnob.stop().css(css);
   }
 
-  if (self.getBound() !== self['state']) self.el.trigger(self.opts['stateEvent'], self['state'] = self.getBound());
+  if (self.getBound() !== self['value']) self.el.trigger(self.opts['valueEvent'], self['value'] = self.getBound());
 };
 
 Sliders.prototype.getBound = function() {
   var self = this;
-  return Math.round(self.across / (100 / (self.max - self.min)) / self.opts['step']) * self.opts['step'];
+  var bound = Math.round(self.across / (100 / (self.max - self.min)) / self.opts['step']) * self.opts['step'] + self.min;
+  if (bound < self.min) bound = self.min;
+  if (bound > self.max) bound = self.max;
+  return bound;
 };
 
 Sliders.prototype.bound = function() {
   var self = this;
-  self.setState(self.getBound());
+  self.setValue(self.getBound());
 };
 
-Sliders.prototype.setState = Sliders.prototype['setState'] = function(lvl, noAnimate) {
+Sliders.prototype.setValue = Sliders.prototype['setValue'] = function(lvl, noAnimate) {
   var self = this;
-  if (lvl < self.min) lvl = self.min;
-  if (lvl > self.max) lvl = self.max;
 
-  self.move(lvl * 100 / (self.max - self.min), noAnimate);
+  self.move((lvl - self.min) * 100 / (self.max - self.min), noAnimate);
 
   if (lvl !== self.changeState) self.el.trigger(self.opts['changeEvent'], lvl);
-  self['state'] = self.changeState = lvl;
+  self['value'] = self.changeState = lvl;
+  if (self.input) self.input.val(lvl);
 };
 
 Sliders.prototype.setRange = Sliders.prototype['setRange'] = function(min, max, noAnimate) {
   var self = this;
   if (typeof min !== 'undefined') self.min = min;
   if (typeof max !== 'undefined') self.max = max;
-  self.setState(self['state'], noAnimate);
+
+  if (self.input) {
+    self.input.attr('min', self.min);
+    self.input.attr('max', self.max);
+  }
+
+  self.setValue(self['value'], noAnimate);
 };
 
     $.fn['sliders'] = function(opts) {

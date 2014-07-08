@@ -1,5 +1,5 @@
 /**
-@license jQuery Sliders v1.0.0
+@license jQuery Sliders v1.1.0
 Copyright 2014 Simon Tabor - MIT License
 https://github.com/simontabor/jquery-sliders / http://simontabor.com/labs/sliders
 */
